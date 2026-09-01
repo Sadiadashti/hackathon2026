@@ -1,112 +1,809 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ProFix - Home Service Booking</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>QuickServe | Local Service Booking</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <nav class="navbar">
-        <div class="logo">ProFix Services</div>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#hero">Home</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#providers">Providers</a></li>
-            <li><a href="#booking">Book Now</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-        <div class="auth-buttons" id="authButtons">
-            <button onclick="openModal('loginModal')">Login</button>
-            <button onclick="openModal('signupModal')">Sign Up</button>
-        </div>
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+  <div class="nav-container">
+
+    <a href="#home" class="logo">
+      <span class="logo-icon">Q</span>
+      <span>Quick<span>Serve</span></span>
+    </a>
+
+    <nav class="nav-links">
+
+      <a href="#home">Home</a>
+      <a href="#services">Services</a>
+      <a href="#providers">Providers</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+
     </nav>
 
-    <header id="hero" class="hero">
-        <div class="hero-content">
-            <h1>Reliable Home Services at Your Doorstep</h1>
-            <p>Book trusted professionals for cleaning, repairs, and more.</p>
-            <a href="#services" class="btn">Explore Services</a>
+    <div class="nav-actions">
+
+      <button id="loginBtn" class="btn btn-outline">
+        Login
+      </button>
+
+      <button id="signupBtn" class="btn btn-primary">
+        Sign Up
+      </button>
+
+      <div id="userArea" class="user-area hidden">
+
+        <button id="dashboardBtn" class="btn btn-outline">
+          Dashboard
+        </button>
+
+        <button id="logoutBtn" class="btn btn-danger">
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+    <button id="menuBtn" class="menu-btn">
+      ☰
+    </button>
+
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu">
+
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#providers">Providers</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+
+    <button id="mobileLogin" class="btn btn-outline">
+      Login
+    </button>
+
+    <button id="mobileSignup" class="btn btn-primary">
+      Sign Up
+    </button>
+
+  </div>
+
+</header>
+
+
+<!-- ================= MAIN ================= -->
+
+<main id="mainContent">
+
+<!-- ================= HERO ================= -->
+
+<section id="home" class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-badge">
+      <span>●</span>
+      Trusted local professionals
+    </div>
+
+    <h1>
+      Find the right
+      <span>professional</span>
+      for every job.
+    </h1>
+
+    <p>
+      QuickServe connects you with trusted local service
+      providers. Search, compare, book and track your
+      service in one place.
+    </p>
+
+    <div class="hero-actions">
+
+      <button id="exploreBtn" class="btn btn-primary btn-large">
+        Explore Services →
+      </button>
+
+      <button id="becomeProviderBtn" class="btn btn-outline btn-large">
+        Become a Provider
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="hero-card">
+
+    <div class="hero-card-top">
+
+      <span class="online-dot"></span>
+      Available Professionals
+
+    </div>
+
+    <div class="mini-provider">
+
+      <div class="mini-avatar">👨‍🔧</div>
+
+      <div>
+        <strong>Ahmed Khan</strong>
+        <small>Home Cleaning</small>
+      </div>
+
+      <span class="mini-rating">
+        ★ 4.9
+      </span>
+
+    </div>
+
+    <div class="mini-provider">
+
+      <div class="mini-avatar">🔧</div>
+
+      <div>
+        <strong>Usman Ali</strong>
+        <small>Plumbing</small>
+      </div>
+
+      <span class="mini-rating">
+        ★ 4.8
+      </span>
+
+    </div>
+
+    <div class="mini-provider">
+
+      <div class="mini-avatar">⚡</div>
+
+      <div>
+        <strong>Bilal Ahmed</strong>
+        <small>Electrical</small>
+      </div>
+
+      <span class="mini-rating">
+        ★ 4.9
+      </span>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SEARCH ================= -->
+
+<section class="search-section">
+
+  <div class="search-box">
+
+    <div class="search-icon">
+      🔎
+    </div>
+
+    <input
+      id="searchInput"
+      type="text"
+      placeholder="Search provider, service or location..."
+    >
+
+    <select id="categoryFilter">
+
+      <option value="all">
+        All Services
+      </option>
+
+      <option value="Cleaning">
+        Cleaning
+      </option>
+
+      <option value="Plumbing">
+        Plumbing
+      </option>
+
+      <option value="Electrical">
+        Electrical
+      </option>
+
+      <option value="AC Repair">
+        AC Repair
+      </option>
+
+      <option value="Painting">
+        Painting
+      </option>
+
+      <option value="Carpentry">
+        Carpentry
+      </option>
+
+      <option value="Appliance Repair">
+        Appliance Repair
+      </option>
+
+      <option value="Pest Control">
+        Pest Control
+      </option>
+
+      <option value="Car Wash">
+        Car Wash
+      </option>
+
+      <option value="Moving & Shifting">
+        Moving & Shifting
+      </option>
+
+    </select>
+
+    <button id="searchBtn" class="btn btn-primary">
+      Search
+    </button>
+
+  </div>
+
+</section>
+
+
+<!-- ================= SERVICES ================= -->
+
+<section id="services" class="section">
+
+  <div class="section-heading">
+
+    <div>
+
+      <span class="eyebrow">
+        WHAT WE OFFER
+      </span>
+
+      <h2>
+        Popular Services
+      </h2>
+
+      <p>
+        Choose from professional services near you.
+      </p>
+
+    </div>
+
+    <button id="viewAllServices" class="text-btn">
+      View All →
+    </button>
+
+  </div>
+
+  <div id="serviceGrid" class="service-grid"></div>
+
+</section>
+
+
+<!-- ================= PROVIDERS ================= -->
+
+<section id="providers" class="section providers-section">
+
+  <div class="section-heading">
+
+    <div>
+
+      <span class="eyebrow">
+        PROFESSIONALS
+      </span>
+
+      <h2>
+        Top Service Providers
+      </h2>
+
+      <p>
+        Meet experienced professionals ready to help.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div id="providerGrid" class="provider-grid"></div>
+
+</section>
+
+
+<!-- ================= ABOUT ================= -->
+
+<section id="about" class="about-section">
+
+  <div class="about-content">
+
+    <span class="eyebrow">
+      WHY QUICKSERVE
+    </span>
+
+    <h2>
+      Everything you need,
+      <span>in one place.</span>
+    </h2>
+
+    <p>
+      From cleaning your home to repairing an AC,
+      QuickServe makes it simple to find reliable
+      professionals and book them whenever you need.
+    </p>
+
+    <div class="feature-list">
+
+      <div class="feature">
+        <span>✓</span>
+        Verified service providers
+      </div>
+
+      <div class="feature">
+        <span>✓</span>
+        Easy online booking
+      </div>
+
+      <div class="feature">
+        <span>✓</span>
+        Real-time booking status
+      </div>
+
+      <div class="feature">
+        <span>✓</span>
+        Customer reviews and ratings
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ================= CONTACT ================= -->
+
+<section id="contact" class="contact-section">
+
+  <div>
+
+    <span class="eyebrow">
+      NEED HELP?
+    </span>
+
+    <h2>
+      Let's get your job done.
+    </h2>
+
+    <p>
+      Find a professional and book your service today.
+    </p>
+
+  </div>
+
+  <button id="contactBtn" class="btn btn-primary btn-large">
+    Find a Provider →
+  </button>
+
+</section>
+
+</main>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboardSection" class="dashboard-section hidden">
+
+  <div class="dashboard-container">
+
+    <div class="dashboard-header">
+
+      <div>
+
+        <span class="eyebrow">
+          MY ACCOUNT
+        </span>
+
+        <h2>
+          Dashboard
+        </h2>
+
+        <p id="welcomeText">
+          Manage your bookings and services.
+        </p>
+
+      </div>
+
+      <button id="backHomeBtn" class="btn btn-outline">
+        ← Back Home
+      </button>
+
+    </div>
+
+
+    <div class="dashboard-tabs">
+
+      <button id="customerTab" class="dashboard-tab active">
+        My Bookings
+      </button>
+
+      <button id="providerTab" class="dashboard-tab">
+        Provider Jobs
+      </button>
+
+      <button id="profileTab" class="dashboard-tab">
+        My Provider Profile
+      </button>
+
+    </div>
+
+
+    <!-- CUSTOMER -->
+
+    <div id="customerDashboard">
+
+      <div id="customerBookings" class="booking-list">
+      </div>
+
+    </div>
+
+
+    <!-- PROVIDER -->
+
+    <div id="providerDashboard" class="hidden">
+
+      <div class="provider-dashboard-head">
+
+        <div>
+
+          <h3>
+            Incoming Bookings
+          </h3>
+
+          <p>
+            Accept, reject and manage customer requests.
+          </p>
+
         </div>
-    </header>
 
-    <section id="services" class="services">
-        <h2>Our Services</h2>
-        <div class="grid-container" id="servicesGrid">
+      </div>
+
+      <div id="providerBookings" class="booking-list">
+      </div>
+
+    </div>
+
+
+    <!-- PROVIDER PROFILE -->
+
+    <div id="profileDashboard" class="hidden">
+
+      <div class="profile-create-card">
+
+        <h3>
+          Create / Update Provider Profile
+        </h3>
+
+        <p>
+          Add your service details so customers can
+          find and book you.
+        </p>
+
+        <form id="providerProfileForm">
+
+          <div class="form-grid">
+
+            <div class="form-group">
+
+              <label>
+                Full Name
+              </label>
+
+              <input
+                id="providerName"
+                class="form-control"
+                type="text"
+                required
+              >
+
             </div>
-    </section>
 
-    <section id="providers" class="providers">
-        <h2>Top Service Professionals</h2>
-        <div class="grid-container" id="providersGrid">
+
+            <div class="form-group">
+
+              <label>
+                Service
+              </label>
+
+              <select
+                id="providerService"
+                class="form-control"
+                required
+              >
+
+                <option value="">
+                  Select Service
+                </option>
+
+                <option>Home Cleaning</option>
+                <option>Plumbing</option>
+                <option>Electrical Work</option>
+                <option>AC Repair</option>
+                <option>House Painting</option>
+                <option>Carpentry</option>
+                <option>Appliance Repair</option>
+                <option>Pest Control</option>
+                <option>Car Wash</option>
+                <option>Moving & Shifting</option>
+
+              </select>
+
             </div>
-    </section>
 
-    <section id="booking" class="booking">
-        <h2>Book a Service</h2>
-        <form id="bookingForm">
-            <label for="serviceSelect">Select Service:</label>
-            <select id="serviceSelect" required>
-                </select>
 
-            <label for="bookingDate">Select Date:</label>
-            <input type="date" id="bookingDate" required>
+            <div class="form-group">
 
-            <label for="bookingTime">Select Time:</label>
-            <input type="time" id="bookingTime" required>
+              <label>
+                Location
+              </label>
 
-            <button type="submit" class="btn">Confirm Booking</button>
+              <input
+                id="providerLocation"
+                class="form-control"
+                type="text"
+                placeholder="e.g. Gulshan-e-Iqbal"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Experience
+              </label>
+
+              <input
+                id="providerExperience"
+                class="form-control"
+                type="text"
+                placeholder="e.g. 5 Years"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Price
+              </label>
+
+              <input
+                id="providerPrice"
+                class="form-control"
+                type="number"
+                placeholder="Starting price"
+                required
+              >
+
+            </div>
+
+
+            <div class="form-group">
+
+              <label>
+                Profile Emoji
+              </label>
+
+              <input
+                id="providerAvatar"
+                class="form-control"
+                type="text"
+                value="👨‍🔧"
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label>
+              About Your Service
+            </label>
+
+            <textarea
+              id="providerAbout"
+              class="form-control"
+              rows="5"
+              placeholder="Tell customers about your work..."
+              required
+            ></textarea>
+
+          </div>
+
+
+          <button
+            type="submit"
+            class="btn btn-primary"
+          >
+            Save Provider Profile
+          </button>
+
         </form>
-    </section>
 
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('signupModal')">&times;</span>
-            <h3>Create Account</h3>
-            <form id="signupForm">
-                <input type="text" id="signupName" placeholder="Full Name" required>
-                <input type="email" id="signupEmail" placeholder="Email" required>
-                <input type="password" id="signupPassword" placeholder="Password" required>
-                
-                <label for="accountType" style="margin-top: 10px; display: block; font-weight: bold;">I want to register as:</label>
-                <select id="accountType" required>
-                    <option value="Customer">Customer (Book Services)</option>
-                    <option value="Provider">Service Provider (Offer Work)</option>
-                </select>
+      </div>
 
-                <button type="submit" class="btn" style="margin-top: 15px; width: 100%;">Sign Up</button>
-            </form>
-        </div>
     </div>
 
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h3>Login</h3>
-            <form id="loginForm">
-                <input type="email" id="loginEmail" placeholder="Email" required>
-                <input type="password" id="loginPassword" placeholder="Password" required>
-                <button type="submit" class="btn" style="margin-top: 15px; width: 100%;">Login</button>
-            </form>
-        </div>
+  </div>
+
+</section>
+
+
+<!-- ================= AUTH MODAL ================= -->
+
+<div id="authModal" class="modal">
+
+  <div class="modal-box">
+
+    <button
+      id="authClose"
+      class="modal-close"
+    >
+      ×
+    </button>
+
+    <div id="authContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= BOOKING MODAL ================= -->
+
+<div id="bookingModal" class="modal">
+
+  <div class="modal-box">
+
+    <button
+      id="bookingClose"
+      class="modal-close"
+    >
+      ×
+    </button>
+
+    <div id="bookingContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= PROVIDER MODAL ================= -->
+
+<div id="providerModal" class="modal">
+
+  <div class="modal-box">
+
+    <button
+      id="providerClose"
+      class="modal-close"
+    >
+      ×
+    </button>
+
+    <div id="providerContent"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+  <div class="footer-container">
+
+    <div class="footer-brand">
+
+      <div class="logo">
+        <span class="logo-icon">Q</span>
+        <span>Quick<span>Serve</span></span>
+      </div>
+
+      <p>
+        Connecting customers with trusted local
+        professionals.
+      </p>
+
     </div>
 
-    <div id="profileModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('profileModal')">&times;</span>
-            <div id="profileDetails"></div>
-        </div>
+
+    <div class="footer-links">
+
+      <h4>
+        Quick Links
+      </h4>
+
+      <a href="#home">
+        Home
+      </a>
+
+      <a href="#services">
+        Services
+      </a>
+
+      <a href="#providers">
+        Providers
+      </a>
+
+      <a href="#about">
+        About
+      </a>
+
     </div>
 
-    <footer>
-        <p>&copy; 2026 ProFix Home Services. All Rights Reserved.</p>
-    </footer>
 
-    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script> 
-    <script src="app.js"></script>
+    <div class="footer-links">
+
+      <h4>
+        Account
+      </h4>
+
+      <button id="footerLogin">
+        Login
+      </button>
+
+      <button id="footerSignup">
+        Sign Up
+      </button>
+
+      <button id="footerDashboard">
+        Dashboard
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div class="footer-bottom">
+
+    © 2026 QuickServe. All rights reserved.
+
+  </div>
+
+</footer>
+
+
+<!-- ================= TOAST ================= -->
+
+<div id="toast" class="toast">
+</div>
+
+
+<script type="module" src="app.js"></script>
+
 </body>
 </html>
+
